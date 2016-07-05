@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Предварительная запись</title>
+        <style type="text/css">
+            .ui-widget,
+            .ui-widget .ui-widget {
+                font-family: "Arial";
+                font-size: 12px !important;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:form id="contact-form">
+                <p:panel>
+                    <p:panel header="Информация о компании">
+                        <h:outputLabel value="Компания #{indexMBean.patientDto.companyName}. "/>
+                        <br />
+                        <h:outputLabel value="Вход выполнен от имени: #{indexMBean.patientDto.hrSpecialist} (#{indexMBean.patientDto.hrEmail})"/>
+                    </p:panel>
+                    <br />
+                    <p:panel header="Персональные данные кандидата на трудоустройство">
+                        <h:panelGrid columns="6">
+                            <h:outputLabel value="Фамилия" for="lastName" />
+                            <p:inputText id="lastName" value="#{indexMBean.patientDto.lastName}" title="Фамилия" required="true">
+                                <p:ajax event="change"/>
+                            </p:inputText>
+                            <h:outputLabel value="Имя" for="firstName"/>
+                            <p:inputText id="firstName" value="#{indexMBean.patientDto.firstName}" title="Имя"  required="true">
+                                <p:ajax event="change"/>
+                            </p:inputText>
+                            <h:outputLabel value="Отчество" for="patronymicName" />
+                            <p:inputText id="patronymicName" value="#{indexMBean.patientDto.patronymicName}" title="Отчество"  required="true">
+                                <p:ajax event="change"/>
+                            </p:inputText>
+                            <h:outputLabel value="День рождения" for="birthday" />
+                            <p:inputMask mask="99.99.9999" id="birthday" value="#{indexMBean.patientDto.birthday}" title="День рождения" required="true" validatorMessage="Неправильный формат даты. Корректный вид: 16.12.1979">
+                                <f:validateRegex pattern="^((((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1[012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00)))|(((0[1-9]|[12]\d|3[01])(0[13578]|1[02])((1[6-9]|[2-9]\d)?\d{2}))|((0[1-9]|[12]\d|30)(0[13456789]|1[012])((1[6-9]|[2-9]\d)?\d{2}))|((0[1-9]|1\d|2[0-8])02((1[6-9]|[2-9]\d)?\d{2}))|(2902((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00))))$"/>
+                                <p:ajax event="blur" update="msg" />  
+                            </p:inputMask>
+                            <h:outputLabel value="Пол" for="sex" />
+                            <h:selectOneMenu id="sex" value="#{indexMBean.patientDto.sex}">
+                                <f:selectItem itemLabel="Мужской" itemValue="0" />
+                                <f:selectItem itemLabel="Женский" itemValue="1" />
+                                <p:ajax event="change"/>
+                            </h:selectOneMenu>
+
+                            <h:outputLabel value="Город" for="residenceCity" />
+                            <p:inputText id="residenceCity" value="#{indexMBean.patientDto.residenceCity}" title="Город"><p:ajax event="change"/></p:inputText>
+                            <h:outputLabel value="Улица" for="residenceStreet" />
+                            <p:inputText id="residenceStreet" value="#{indexMBean.patientDto.residenceStreet}" title="Улица" ><p:ajax event="change"/></p:inputText>
+                            <h:outputLabel value="Дом" for="residenceHome" />
+                            <p:inputText id="residenceHome" value="#{indexMBean.patientDto.residenceHome}" title="Дом"><p:ajax event="change"/></p:inputText>
+                            <h:outputLabel value="Квартира" for="residenceFlat" />
+                            <p:inputText id="residenceFlat" value="#{indexMBean.patientDto.residenceFlat}" title="Квартира"><p:ajax event="change"/></p:inputText>
+                            <h:outputLabel value="Мобильный телефон" for="mobilePhone" />
+                            <p:inputMask mask="8(999)999-9999" id="mobilePhone" value="#{indexMBean.patientDto.mobilePhone}" title="Мобильный телефон"><p:ajax event="change"/></p:inputMask>
+                            <h:outputLabel value="Номер полиса ОМС" for="omsCertificateNumber" />
+                            <p:inputText  id="omsCertificateNumber" value="#{indexMBean.patientDto.omsCertificateNumber}" title="Номер полиса ОМС">
+                                <p:ajax event="change"/>
+                            </p:inputText>
+                            <h:outputLabel value="Страховая компания" for="omsCertificateCompany" />
+                            <h:inputTextarea  rows="2" cols="27" id="omsCertificateCompany" value="#{indexMBean.patientDto.omsCertificateCompany}" title="Страховая компания">
+                                <p:ajax event="change"/>
+                            </h:inputTextarea>
+                            <h:outputLabel value="Дата выдачи полиса" for="omsCertificateDate" />
+                            <p:inputMask mask="99.99.9999" id="omsCertificateDate" value="#{indexMBean.patientDto.omsCertificateDate}" title="Дата выдачи полиса" validatorMessage="Неправильный формат даты. Корректный вид: 16.12.1979">
+                                <!--
+                                <f:validateRegex pattern="^((((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1[012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00)))|(((0[1-9]|[12]\d|3[01])(0[13578]|1[02])((1[6-9]|[2-9]\d)?\d{2}))|((0[1-9]|[12]\d|30)(0[13456789]|1[012])((1[6-9]|[2-9]\d)?\d{2}))|((0[1-9]|1\d|2[0-8])02((1[6-9]|[2-9]\d)?\d{2}))|(2902((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00))))$"/>
+                                -->
+                                <p:ajax event="blur" update="msgOms" />  
+                            </p:inputMask>
+                            <h:outputLabel value="ИНН" for="inn" />
+                            <p:inputText id="inn" value="#{indexMBean.patientDto.inn}" title="ИНН" ><p:ajax event="change"/></p:inputText>
+                            <h:outputLabel value="СНИЛС" for="snils" />
+                            <p:inputText id="snils" value="#{indexMBean.patientDto.snils}" title="СНИЛС"><p:ajax event="change"/></p:inputText>
+
+                            <h:outputLabel value="Серия паспорта" for="passportSeries" />
+                            <p:inputMask mask="99 99" id="passportSeries" value="#{indexMBean.patientDto.passportSeries}" title="Серия паспорта"><p:ajax event="change"/></p:inputMask>
+                            <h:outputLabel value="Номер паспорта" for="passportNumber" />
+                            <p:inputMask mask="999999" id="passportNumber" value="#{indexMBean.patientDto.passportNumber}" title="Номер паспорта"><p:ajax event="change"/></p:inputMask>
+                            <h:outputLabel value="Дата выдачи паспорта" for="passportDateOfIssue" />
+                            <p:inputMask mask="99.99.9999" id="passportDateOfIssue" value="#{indexMBean.patientDto.passportDateOfIssue}" title="Дата выдачи паспорта" validatorMessage="Неправильный формат даты. Корректный вид: 16.12.1979">
+                                <!--
+                                <f:validateRegex pattern="^((((0?[1-9]|[12]\d|3[01])[\.\-\/](0?[13578]|1[02])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|((0?[1-9]|[12]\d|30)[\.\-\/](0?[13456789]|1[012])[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|((0?[1-9]|1\d|2[0-8])[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?\d{2}))|(29[\.\-\/]0?2[\.\-\/]((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00)))|(((0[1-9]|[12]\d|3[01])(0[13578]|1[02])((1[6-9]|[2-9]\d)?\d{2}))|((0[1-9]|[12]\d|30)(0[13456789]|1[012])((1[6-9]|[2-9]\d)?\d{2}))|((0[1-9]|1\d|2[0-8])02((1[6-9]|[2-9]\d)?\d{2}))|(2902((1[6-9]|[2-9]\d)?(0[48]|[2468][048]|[13579][26])|((16|[2468][048]|[3579][26])00)|00))))$"/>
+                                -->
+                                <p:ajax event="blur" update="msgPassportDate" />
+                            </p:inputMask>
+                            <h:outputLabel value="Кем выдан" for="passportIssuer" />
+                            <h:inputTextarea  rows="2" cols="27" id="passportIssuer" value="#{indexMBean.patientDto.passportIssuer}" title="Кем выдан" >
+                                <p:ajax event="change"/>
+                            </h:inputTextarea>
+
+                        </h:panelGrid>
+                        <p:message id="msg" for="birthday" />
+                        <p:message id="msgOms" for="omsCertificateDate" />
+                        <p:message id="msgPassportDate" for="passportDateOfIssue" />
+                        <p:messages showDetail="false" showSummary="true"/>
+                    </p:panel>
+                    <br />
+                    <p:panel header="Данные о рабочем месте, условия труда и вредные факторы">
+                        <h:panelGrid columns="8">
+                            <h:outputLabel value="Подразделение" for="departmentName" />
+                            <h:inputTextarea rows="2" cols="27" id="departmentName"  required="true" value="#{indexMBean.patientDto.departmentName}" title="Подразделение">
+                                <p:ajax event="change"/>
+                            </h:inputTextarea>
+                            <!--
+                            <h:outputLabel value="Профессия" for="specialityName" />
+                            <h:inputTextarea rows="2" cols="27" id="specialityName" required="true" value="#{indexMBean.patientDto.specialityName}" title="Профессия">
+                                <p:ajax event="change"/>
+                            </h:inputTextarea>
+                            -->
+                            <h:outputLabel value="Должность" for="post" />
+                            <h:inputTextarea rows="2" cols="27" id="post" required="true" value="#{indexMBean.patientDto.post}" title="Должность">
+                                <p:ajax event="change"/>
+                            </h:inputTextarea>
+                            <h:outputLabel value="Условия труда:" for="labourCondition" />
+                            <h:selectOneMenu id="labourCondition" value="#{indexMBean.patientDto.labourCondition}">
+                                <f:selectItem itemLabel="Нормальные" itemValue="Нормальные" />
+                                <f:selectItem itemLabel="Вредные" itemValue="Вредные" />
+                                <f:selectItem itemLabel="Особо вредные" itemValue="Особо вредные" />
+                                <p:ajax event="change"/>
+                            </h:selectOneMenu>
+                        </h:panelGrid>
+                        <br />
+                        <p:dataTable id="hazardDataTable" var="hazard" value="#{indexMBean.patientDto.hazards}"
+                                     rowKey="#{hazard.uid}">
+                            <p:column>
+                                <f:facet name="header">
+                                    Номер приложения приказа №302
+                                </f:facet>
+                                <h:outputText value="#{hazard.appendix}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Пункт приказа
+                                </f:facet>
+                                <h:outputText value="#{hazard.paragraph}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Расшифровка пункта
+                                </f:facet>
+                                <h:outputText value="#{hazard.paragraphDescription}" />
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    Удалить фактор
+                                </f:facet>
+                                <p:commandLink ajax="true" action="#{indexMBean.deleteTableRow(hazard)}" update="@form hazardDataTable" process="@this">
+                                    <span title="Remove" class="ui-icon ui-icon-trash"/>
+                                </p:commandLink>
+                            </p:column>
+                        </p:dataTable>
+                        <br />
+                        <h:panelGrid columns="2">
+                            <h:outputLabel value="Номер приложения" for="appendix" />
+                            <h:selectOneMenu id="appendix" value="#{indexMBean.appendix}">
+                                <f:selectItem itemValue="-1" itemLabel="----Выберите приложение----"/>
+                                <f:selectItem itemLabel="Приложение №1" itemValue="1" />
+                                <f:selectItem itemLabel="Приложение №2" itemValue="2" />
+                                <f:ajax event="change" render="paragraph" listener="#{indexMBean.setHazardsByAppendix}" />
+                            </h:selectOneMenu>
+                            <h:outputLabel value="Вредный фактор" for="paragraph" />
+                            <h:selectOneMenu style="width:500px;" id="paragraph" value="#{indexMBean.paragraph}">
+                                <f:selectItem itemValue="-1" itemLabel="----Выберите вредный фактор----"/>
+                                <f:selectItems value="#{indexMBean.hazardList}" /> 
+                                <f:ajax event="change" />
+                            </h:selectOneMenu>
+                            <h:commandButton value="Добавить вредный фактор" > 
+                                <f:ajax render="hazardDataTable" listener="#{indexMBean.setHazard}"/> 
+                            </h:commandButton> 
+                            <h:commandButton value="Удалить вредные факторы" > 
+                                <f:ajax render="hazardDataTable" listener="#{indexMBean.clearHazardsList}"/> 
+                            </h:commandButton> 
+                        </h:panelGrid>
+                    </p:panel>
+                    <p:panel>
+                        <p>Передача персональных данных происходит на основании письменного согласия Кандидата на обработку и передачу персональных данных, данного Кандидатом кадровой службе предприятия.</p>
+                        <h:commandButton value="Передать данные в ООО 'Медсервис'" type="submit" action="#{indexMBean.save()}" />               
+                    </p:panel>
+                </p:panel>
+            </h:form>
+        </f:view>
+    </h:body>
+</html>
+

@@ -1,0 +1,101 @@
+A:link {text-decoration: none}
+A:visited {text-decoration: none; color:#005b09}
+A:active {text-decoration: none}
+A:hover {text-decoration: underline; color: red;}
+
+body{
+    font-family:arial;
+    font-size:14px;
+}
+
+div.empty{
+    width:85%;
+    font-size:small;
+    float:right;
+}
+
+div.navigation{
+    width:11%;
+    font-size:small;
+    float:left;
+    border: 1px solid black;
+    padding:15px;
+}
+
+table.justTable {
+    font-family:arial;
+    border-width: 1px;
+    border-color: black;
+    border-collapse: collapse;
+    background-color: white;
+    width: 100%;
+}
+
+table.justTable tr.odd{
+    background-color: #EDEFFF;
+}
+
+table.justTable td{
+    font-size:10pt;
+    border-width: 1px;
+    border-style: solid;
+    border-color: black;
+    padding: 5px;
+}
+
+table.justTableSmall {
+    font-family:arial;
+    border-width: 1px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.justTableSmall td{
+    font-size:8pt;
+    border-style: dashed;
+    padding: 5px;
+    border-right-color: silver;
+    border-left-color: silver;
+    border-bottom-color: silver;
+    border-top-color: silver;
+}
+
+.checklistbox {
+    overflow: -moz-scrollbars-vertical !important;
+    overflow: auto;
+    border-top: 1px solid silver;
+    border-left: 1px solid silver;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    background-color: white;
+    padding: 10px;
+    height: 515px;
+    width: 180px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    text-align: left;
+}
+
+.destinations {
+    overflow: -moz-scrollbars-vertical !important;
+    overflow: auto;
+    border-top: 1px solid silver;
+    border-left: 1px solid silver;
+    border-right: 1px solid #e4e4e4;
+    border-bottom: 1px solid #e4e4e4;
+    background-color: white;
+    padding: 10px;
+    height: 500px;
+    width: 500px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    text-align: left;
+}
+
+input.btn {
+  color:black;
+  font: bold 'trebuchet ms',helvetica,sans-serif;
+  background-color:#fed;
+  border:2px solid;
+  border-color: black;
+}
